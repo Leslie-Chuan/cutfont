@@ -1,0 +1,19 @@
+{
+  "name": "cutfont",
+  "version": "1.0.0",
+  "description": "How to use",
+  "main": "index.js",
+  "scripts": {
+    "test": "cutfont test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leslie-Chuan/cutfont.git"
+  },
+  "author": "lyy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Leslie-Chuan/cutfont/issues"
+  },
+  "homepage": "https://github.com/Leslie-Chuan/cutfont#readme"
+}
