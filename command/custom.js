@@ -37,6 +37,27 @@ const getTempHtml = (fontPath, yourFont) => {
   return temp;
 };
 
+/* 
+1.删除 xxx_compressed.ttf
+2.复制 xxx_temp.ttf
+3.压缩不备份
+4.更改xxx.ttf 为 xxx_compressed.ttf  更改 xxx_temp.ttf为xxx.ttf
+*/
+const delCompressedPackages = () => {
+  fs.recurseSync(path.join(cwd), function (filepath, relative, filename) {
+    const compressedPackage = filename.split('_').slice(1)&&filename.split('_').slice(1)[0];
+    if(compressedPackage && compressedPackage === 'compressed.ttf') {
+      fs.unlinkSync(filepath, err => {console.error(err)})
+    }
+  });
+}
+
+const backupFontPackages = (fonts) => {
+  fonts.forEach(item => {
+    fs.copyFileSync(`${item}.ttf`, `${item}_temp.ttf`, (err) => {console.error(err)});
+  })
+}
+
 const getFonts = () => {
   let fonts = [];
   fs.recurseSync(path.join(cwd), function (filepath, relative, filename) {
@@ -75,7 +96,10 @@ class CustomeCommand extends Command {
   }
   // argv是父类传进来的参数
   async run({ argv }) {
+    delCompressedPackages();
     const fonts = getFonts();
+    backupFontPackages(fonts);
+    /* const fonts = getFonts();
     createHtmlFile(fonts);
     const hasCompressHtmls = fonts.map((item) =>
       path.join(cwd, `${item}.html`)
@@ -88,7 +112,7 @@ class CustomeCommand extends Command {
       .then((webFonts) => {
         console.log('webFonts:', webFonts);
         // TODO del html
-      });
+      }); */
   }
   get description() {
     return 'cut off your big font file';
