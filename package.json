@@ -4,16 +4,25 @@
   "description": "How to use",
   "main": "index.js",
   "scripts": {
-    "test": "cutfont test"
+    "cutfont": "bin/cutfont.js"
+  },
+  "bin": {
+    "cutfont": "bin/cutfont.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Leslie-Chuan/cutfont.git"
   },
+  "keywords": [
+    "chinese font package"
+  ],
   "author": "lyy",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Leslie-Chuan/cutfont/issues"
   },
-  "homepage": "https://github.com/Leslie-Chuan/cutfont#readme"
+  "homepage": "https://github.com/Leslie-Chuan/cutfont#readme",
+  "dependencies": {
+    "common-bin": "^2.9.0"
+  }
 }
