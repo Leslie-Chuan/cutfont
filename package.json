@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Leslie-Chuan/cutfont#readme",
   "dependencies": {
     "common-bin": "^2.9.0",
+    "file-system": "^2.2.2",
     "font-spider": "^1.3.5"
   }
 }

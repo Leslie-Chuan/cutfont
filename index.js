@@ -17,6 +17,7 @@ class MainCommand extends Command {
     // load 子命令
     this.load(path.join(__dirname, 'command'));
     this.alias('d', 'default');
+    this.alias('c', 'custom');
   }
   get version() {
     return `version：${pkg.version}`;
