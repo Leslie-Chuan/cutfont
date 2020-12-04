@@ -36,6 +36,31 @@ const getTempHtml = (fontPath, yourFont) => {
   `;
   return temp;
 };
+
+const getFonts = () => {
+  let fonts = [];
+  fs.recurseSync(path.join(cwd), function (filepath, relative, filename) {
+    const fileType = path.extname(filepath);
+    if (fileType !== '.ttf') return;
+    const fontPackageName = path.basename(filepath, fileType);
+    fonts.push(fontPackageName);
+  });
+  return fonts;
+};
+
+const createHtmlFile = (fonts) => {
+  fonts.forEach((item) => {
+    let txt;
+    try {
+      txt = fs.readFileSync(path.join(cwd, `${item}.txt`), 'utf8');
+    } catch (err) {
+      console.error(err);
+    }
+    if (!txt) return;
+    const html = getTempHtml(path.join(cwd, `${item}.ttf`), txt);
+    fs.writeFileSync(path.join(cwd, `${item}.html`), html);
+  });
+};
 class CustomeCommand extends Command {
   constructor(rawArgv) {
     super(rawArgv);
@@ -50,36 +75,20 @@ class CustomeCommand extends Command {
   }
   // argv是父类传进来的参数
   async run({ argv }) {
-    let fonts = [];
-    fs.recurseSync(path.join(cwd), function (filepath, relative, filename) {
-      const fileType = path.extname(filepath);
-      if (fileType !== '.ttf') return;
-      const fontPackageName = path.basename(filepath, fileType);
-      fonts.push(fontPackageName);
-    });
-
-    fonts.forEach((item) => {
-      // TODO  读取 item.txt里面的内容 写入.html 在执行 font-spider
-      let txt;
-      try {
-        txt = fs.readFileSync(path.join(cwd, `${item}.txt`), 'utf8');
-      } catch (err) {
-        console.error(err);
-      }
-      if (!txt) return;
-      const html = getTempHtml(path.join(cwd, `${item}.ttf`), txt);
-      fs.writeFileSync(path.join(cwd, `${item}.html`), html);
-      // path.join(cwd)
-    });
-    /* const htmlFiles = [path.resolve(__dirname, '../font/index.html')];
+    const fonts = getFonts();
+    createHtmlFile(fonts);
+    const hasCompressHtmls = fonts.map((item) =>
+      path.join(cwd, `${item}.html`)
+    );
     fontSpider
-      .spider(htmlFiles, { silent: false })
+      .spider(hasCompressHtmls, { silent: false })
       .then((webFonts) => {
-        return fontSpider.compressor(webFonts, { backup: false });
+        return fontSpider.compressor(webFonts, { backup: true });
       })
       .then((webFonts) => {
         console.log('webFonts:', webFonts);
-      }); */
+        // TODO del html
+      });
   }
   get description() {
     return 'cut off your big font file';
