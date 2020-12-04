@@ -4,7 +4,7 @@ const path = require('path');
 const cwd = process.cwd();
 const fontSpider = require('font-spider');
 
-class CutFontCommand extends Command {
+class CustomeCommand extends Command {
   constructor(rawArgv) {
     super(rawArgv);
     this.options = {
@@ -33,4 +33,4 @@ class CutFontCommand extends Command {
   }
 }
 
-module.exports = CutFontCommand;
+module.exports = CustomeCommand;
