@@ -2,7 +2,7 @@
 
 字体裁剪工具，能根据您的目录.txt文件中所用的字符与字体未经压缩的字体包，生成您想要的字体包。
 
-<img alt="字体裁剪工具使用界面" width="500" src="./example/use_01.jpg">
+<img alt="字体裁剪工具使用界面" width="700" src="./example/use_01.jpg">
 
 ## 特点
 
