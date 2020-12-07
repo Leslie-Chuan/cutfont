@@ -1,6 +1,6 @@
 {
   "name": "cutfont",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Compress your font package",
   "main": "index.js",
   "scripts": {

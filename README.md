@@ -15,7 +15,6 @@
 ``` shell
 npm install cutfont -g
 ```
-<img alt="字体裁剪工具使用界面" width="700" src="./example/use.gif">
 
 ## 使用范例
 1. 把您想要的字体写入.txt文件中
