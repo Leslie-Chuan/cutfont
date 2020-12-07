@@ -12,12 +12,12 @@
 
 [字蛛](https://github.com/aui/font-spider)
 
-## 安装
+## 安装（必须全局安装）
 
 安装好 [nodejs](http://nodejs.org)，然后执行：
 
 ``` shell
-npm install cutfont --save-dev
+npm install cutfont g
 ```
 
 ## 使用范例
