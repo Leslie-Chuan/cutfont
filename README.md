@@ -1,16 +1,12 @@
 # 字体裁剪工具（cutfont）
 
-字体裁剪工具，能根据您的目录.txt文件中所用的字符与字体未经压缩的字体包，生成您想要的字体包。
+压缩您的字体包，字体包只保留你想要的文字！
+
+## 背景 
+
+为了特定的显示效果，往往需要使用特定的字体包。但是中文字体包往往体积很大，可到30m。那我们把它裁剪压缩，体积变小，就能满足需求。
 
 <img alt="字体裁剪工具使用界面" width="700" src="./example/use_01.jpg">
-
-## 特点
-
-1. 根据.txt文件和同一目录的.ttf字体包，生成裁剪的后的字体包 xxx_compressed.ttf
-
-## 依赖
-
-[字蛛](https://github.com/aui/font-spider)
 
 ## 安装（必须全局安装）
 
@@ -22,9 +18,11 @@ npm install cutfont -g
 <img alt="字体裁剪工具使用界面" width="700" src="./example/use.gif">
 
 ## 使用范例
+1. 把您想要的字体写入.txt文件中
+2. **.txt文件与您的字体包命名一致**
+<img alt="字体裁剪工具使用界面" width="400" src="./example/step1.jpg">
 
-1. 命名：如您要压缩的字体为YouSheBiaoTiHei.ttf 那么需要在同一目录先新建YouSheBiaoTiHei.txt，并将你要保留的字符放在.txt文件中
-2. 命令行：
+3. 执行命令：
 
 ``` shell
 cutfont c
@@ -40,6 +38,9 @@ cutfont c
   ``` shell
   cutfont c
   ```
+## 鸣谢
+
+[字蛛](https://github.com/aui/font-spider)
 
 ## 注意：
 - 目前只支持.ttf文件裁剪，想要更多issues留言！
