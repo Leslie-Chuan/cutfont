@@ -144,9 +144,38 @@ const getTempHtml = (fontPath) => {
   `;
   return temp;
 };
+
+const delCompressedPackages = () => {
+  fs.recurseSync(path.join(cwd), function (filepath, relative, filename) {
+    if (!filename || filename.indexOf('_compressed') === -1) return;
+    console.info('filename:', filename);
+    const compressedPackage =
+      filename.split('_').slice(1) && filename.split('_').slice(1)[0];
+    if (compressedPackage && compressedPackage === 'compressed.ttf') {
+      fs.unlinkSync(filepath, (err) => {
+        console.error(err);
+      });
+    }
+  });
+};
+const backupFontPackages = (fonts) => {
+  console.log('fonts', fonts);
+  fonts.forEach((item) => {
+    fs.copyFileSync(`${item}.ttf`, `${item}_temp.ttf`, (err) => {
+      console.error(err);
+    });
+  });
+};
 const createHtmlFile = (fonts) => {
   fonts.forEach((item) => {
-    const html = getTempHtml(path.join(cwd, `${item}.ttf`));
+    let txt;
+    try {
+      txt = fs.readFileSync(path.join(cwd, `${item}.txt`), 'utf8');
+    } catch (err) {
+      console.error(err);
+    }
+    if (!txt) return;
+    const html = getTempHtml(path.join(cwd, `${item}.ttf`), txt);
     fs.writeFileSync(path.join(cwd, `${item}.html`), html);
   });
 };
@@ -166,7 +195,9 @@ class CutFontCommand extends Command {
   }
   // argv是父类传进来的参数
   async run({ argv }) {
+    delCompressedPackages();
     const fonts = getFonts();
+    backupFontPackages(fonts);
     createHtmlFile(fonts);
     const hasCompressHtmls = fonts.map((item) =>
       path.join(cwd, `${item}.html`)
@@ -174,10 +205,32 @@ class CutFontCommand extends Command {
     fontSpider
       .spider(hasCompressHtmls, { silent: false })
       .then((webFonts) => {
-        return fontSpider.compressor(webFonts, { backup: true });
+        return fontSpider.compressor(webFonts, { backup: false });
       })
       .then((webFonts) => {
         console.log('webFonts:', webFonts);
+        fonts.map((item) => {
+          const htmlPath = path.join(cwd, `${item}.html`);
+          // delete temp html file
+          fs.unlinkSync(htmlPath, (err) => {
+            console.console.error(err);
+          });
+          // rename
+          fs.renameSync(
+            path.join(cwd, `${item}.ttf`),
+            path.join(cwd, `${item}_compressed.ttf`),
+            (err) => {
+              console.error(err);
+            }
+          );
+          fs.renameSync(
+            path.join(cwd, `${item}_temp.ttf`),
+            path.join(cwd, `${item}.ttf`),
+            (err) => {
+              console.error(err);
+            }
+          );
+        });
         // TODO del html
       });
   }
