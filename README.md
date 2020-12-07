@@ -17,7 +17,7 @@
 安装好 [nodejs](http://nodejs.org)，然后执行：
 
 ``` shell
-npm install cutfont g
+npm install cutfont -g
 ```
 
 ## 使用范例
