@@ -19,6 +19,7 @@
 ``` shell
 npm install cutfont -g
 ```
+<img alt="字体裁剪工具使用界面" width="700" src="./example/use.gif">
 
 ## 使用范例
 
@@ -31,14 +32,14 @@ cutfont c
 
 ## 命令说明
 
-  ### 生成默认的3500个常用汉字和半角 、全角特殊字符和英文还有数字的字体包。
+  #### 生成默认的3500个常用汉字和半角 、全角特殊字符和英文还有数字的字体包。
   ``` shell
   cutfont d
   ```
-  ### 根据您的.txt文件裁剪.ttf字体包。
+  #### 根据您的.txt文件裁剪.ttf字体包。
   ``` shell
   cutfont c
   ```
 
 ## 注意：
-- 目前只支持.ttf文件裁剪，想要更多issues见！
+- 目前只支持.ttf文件裁剪，想要更多issues留言！
