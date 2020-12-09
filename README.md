@@ -3,7 +3,7 @@
 压缩您的字体包，字体包只保留你想要的文字！
 
 [GitHub](https://github.com/Leslie-Chuan/cutfont.git)
-[Get Started](#quick-start)
+[Get Started](https://leslie-chuan.github.io/cutfont/#/)
 
 ## 背景 
 
