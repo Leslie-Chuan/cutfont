@@ -24,8 +24,8 @@ cutfont d
 
 **自定义压使用方式**
 
-1. 把您想要的字体写入.txt 文件中
-2. .txt 文件与您的字体包命名一致
+1. 把您想要的字符写入.txt 文件中
+2. .txt 文件与字体包命名一致
    <img alt="字体裁剪工具使用界面" width="400" src="https://raw.githubusercontent.com/Leslie-Chuan/cutfont/main/example/step1.jpg">
 
 3. 执行命令：
