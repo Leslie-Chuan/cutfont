@@ -5,6 +5,8 @@ const fontSpider = require('font-spider');
 const fs = require('file-system');
 const ora = require('ora');
 
+const necessaryTxt = '半角英文：abcdefghijklmnopqrstuvwxyz A B C D E F GH I J K L M NO P Q R S T U V W X Y Z全角英文小写：ａ,ｂ,ｃ,ｄ,ｅ,ｆ,ｇ,ｈ,ｉ,ｇ,ｋ,ｌ,ｍ,ｎ,ｏ,ｐ,ｑ,ｒ,ｓ,ｔ,ｕ,ｖ,ｗ,ｘ,ｙ,ｚ全角英文大写：Ａ,Ｂ,Ｃ,Ｄ,Ｅ,Ｆ,Ｇ,Ｈ,Ｉ,Ｊ,Ｋ,Ｌ,Ｍ,Ｎ,Ｏ,Ｐ,Ｑ,Ｒ,Ｓ,Ｔ,Ｕ,Ｖ,Ｗ,Ｘ,Ｙ,Ｚ全角数字：１,２,３,４,５,６,７,８,９,０半角数字：1234567890 ～！@#￥%……&*（）——+｜@、￥、&、*《》、<>、？~ ! @ # $ % ^ & * ( ) _ + | { } : " < > ?` - = \ [ ] \' ; / . , ';
+
 class Common {
   constructor(mode) {
     this.mode = mode;
@@ -224,6 +226,7 @@ class Common {
         console.error(err);
       }
       if (!txt) return;
+      txt += necessaryTxt;
       const html = _this.getTempHtml(path.join(cwd, `${item}.ttf`), txt);
       fs.writeFileSync(path.join(cwd, `${item}.html`), html);
     });
